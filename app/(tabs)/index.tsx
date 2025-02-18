@@ -1,9 +1,9 @@
-import { Image, StyleSheet, Platform } from "react-native";
+import { Image, StyleSheet } from "react-native";
 
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
-import Home from "./Home";
-import { componentData } from "../componentData";
+import { ThemedView } from "@/components/ThemedView";
+import SnackPlayer from "./SnackPlayer";
 
 export default function HomeScreen() {
   return (
@@ -16,7 +16,10 @@ export default function HomeScreen() {
         />
       }
     >
-      <pre>{JSON.stringify(componentData, null, 2)}</pre>
+      <ThemedView style={styles.titleContainer}>
+        {/* <HelloWave /> */}
+        <SnackPlayer />
+      </ThemedView>
     </ParallaxScrollView>
   );
 }
@@ -26,10 +29,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
   },
   reactLogo: {
     height: 178,

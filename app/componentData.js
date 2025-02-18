@@ -1,16 +1,52 @@
 export const componentData = {
-  "ButtonComponent.tsx":
-    'import React from "react";\n\nconst ButtonComponent = () => {\n  return <div>ButtonComponent</div>;\n};\n\nexport default ButtonComponent;\n',
-  "CardComponent.tsx":
-    'import React from "react";\n\nconst CardComponent = () => {\n  return <div>CardComponent</div>;\n};\n\nexport default CardComponent;\n',
-  "HeaderComponent.tsx":
-    'import React from "react";\n\nconst HeaderComponent = () => {\n  return <div>HeaderComponent</div>;\n};\n\nexport default HeaderComponent;\n',
-  "Home.tsx":
-    'import React from "react";\nimport { ScrollView, useWindowDimensions } from "react-native";\nimport RenderHTML from "react-native-render-html";\n\nconst html = `\n  <h1>This HTML snippet is now rendered with native components !</h1>\n  <h2>Enjoy a webview-free and blazing fast application</h2>\n  <em style="textAlign: center;">Look at how happy this native cat is</em>\n`;\n\nexport default function Home() {\n  const { width } = useWindowDimensions();\n  return (\n    <ScrollView style={{ flex: 1 }}>\n      <RenderHTML contentWidth={width} source={{ html }} />\n    </ScrollView>\n  );\n}\n',
-  "_layout.tsx":
-    "import { Tabs } from 'expo-router';\nimport React from 'react';\nimport { Platform } from 'react-native';\n\nimport { HapticTab } from '@/components/HapticTab';\nimport { IconSymbol } from '@/components/ui/IconSymbol';\nimport TabBarBackground from '@/components/ui/TabBarBackground';\nimport { Colors } from '@/constants/Colors';\nimport { useColorScheme } from '@/hooks/useColorScheme';\n\nexport default function TabLayout() {\n  const colorScheme = useColorScheme();\n\n  return (\n    <Tabs\n      screenOptions={{\n        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,\n        headerShown: false,\n        tabBarButton: HapticTab,\n        tabBarBackground: TabBarBackground,\n        tabBarStyle: Platform.select({\n          ios: {\n            // Use a transparent background on iOS to show the blur effect\n            position: 'absolute',\n          },\n          default: {},\n        }),\n      }}>\n      <Tabs.Screen\n        name=\"index\"\n        options={{\n          title: 'Home',\n          tabBarIcon: ({ color }) => <IconSymbol size={28} name=\"house.fill\" color={color} />,\n        }}\n      />\n      <Tabs.Screen\n        name=\"explore\"\n        options={{\n          title: 'Explore',\n          tabBarIcon: ({ color }) => <IconSymbol size={28} name=\"paperplane.fill\" color={color} />,\n        }}\n      />\n    </Tabs>\n  );\n}\n",
-  "explore.tsx":
-    'import { StyleSheet, Image, Platform } from \'react-native\';\n\nimport { Collapsible } from \'@/components/Collapsible\';\nimport { ExternalLink } from \'@/components/ExternalLink\';\nimport ParallaxScrollView from \'@/components/ParallaxScrollView\';\nimport { ThemedText } from \'@/components/ThemedText\';\nimport { ThemedView } from \'@/components/ThemedView\';\nimport { IconSymbol } from \'@/components/ui/IconSymbol\';\n\nexport default function TabTwoScreen() {\n  return (\n    <ParallaxScrollView\n      headerBackgroundColor={{ light: \'#D0D0D0\', dark: \'#353636\' }}\n      headerImage={\n        <IconSymbol\n          size={310}\n          color="#808080"\n          name="chevron.left.forwardslash.chevron.right"\n          style={styles.headerImage}\n        />\n      }>\n      <ThemedView style={styles.titleContainer}>\n        <ThemedText type="title">Explore</ThemedText>\n      </ThemedView>\n      <ThemedText>This app includes example code to help you get started.</ThemedText>\n      <Collapsible title="File-based routing">\n        <ThemedText>\n          This app has two screens:{\' \'}\n          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{\' \'}\n          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>\n        </ThemedText>\n        <ThemedText>\n          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{\' \'}\n          sets up the tab navigator.\n        </ThemedText>\n        <ExternalLink href="https://docs.expo.dev/router/introduction">\n          <ThemedText type="link">Learn more</ThemedText>\n        </ExternalLink>\n      </Collapsible>\n      <Collapsible title="Android, iOS, and web support">\n        <ThemedText>\n          You can open this project on Android, iOS, and the web. To open the web version, press{\' \'}\n          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.\n        </ThemedText>\n      </Collapsible>\n      <Collapsible title="Images">\n        <ThemedText>\n          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{\' \'}\n          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for\n          different screen densities\n        </ThemedText>\n        <Image source={require(\'@/assets/images/react-logo.png\')} style={{ alignSelf: \'center\' }} />\n        <ExternalLink href="https://reactnative.dev/docs/images">\n          <ThemedText type="link">Learn more</ThemedText>\n        </ExternalLink>\n      </Collapsible>\n      <Collapsible title="Custom fonts">\n        <ThemedText>\n          Open <ThemedText type="defaultSemiBold">app/_layout.tsx</ThemedText> to see how to load{\' \'}\n          <ThemedText style={{ fontFamily: \'SpaceMono\' }}>\n            custom fonts such as this one.\n          </ThemedText>\n        </ThemedText>\n        <ExternalLink href="https://docs.expo.dev/versions/latest/sdk/font">\n          <ThemedText type="link">Learn more</ThemedText>\n        </ExternalLink>\n      </Collapsible>\n      <Collapsible title="Light and dark mode components">\n        <ThemedText>\n          This template has light and dark mode support. The{\' \'}\n          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect\n          what the user\'s current color scheme is, and so you can adjust UI colors accordingly.\n        </ThemedText>\n        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">\n          <ThemedText type="link">Learn more</ThemedText>\n        </ExternalLink>\n      </Collapsible>\n      <Collapsible title="Animations">\n        <ThemedText>\n          This template includes an example of an animated component. The{\' \'}\n          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses\n          the powerful <ThemedText type="defaultSemiBold">react-native-reanimated</ThemedText>{\' \'}\n          library to create a waving hand animation.\n        </ThemedText>\n        {Platform.select({\n          ios: (\n            <ThemedText>\n              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{\' \'}\n              component provides a parallax effect for the header image.\n            </ThemedText>\n          ),\n        })}\n      </Collapsible>\n    </ParallaxScrollView>\n  );\n}\n\nconst styles = StyleSheet.create({\n  headerImage: {\n    color: \'#808080\',\n    bottom: -90,\n    left: -35,\n    position: \'absolute\',\n  },\n  titleContainer: {\n    flexDirection: \'row\',\n    gap: 8,\n  },\n});\n',
-  "index.tsx":
-    'import { Image, StyleSheet, Platform } from "react-native";\n\nimport { HelloWave } from "@/components/HelloWave";\nimport ParallaxScrollView from "@/components/ParallaxScrollView";\nimport Home from "./Home";\nimport { componentData } from "../componentData";\n\nexport default function HomeScreen() {\n  return (\n    <ParallaxScrollView\n      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}\n      headerImage={\n        <Image\n          source={require("@/assets/images/partial-react-logo.png")}\n          style={styles.reactLogo}\n        />\n      }\n    >\n      <pre>{JSON.stringify(componentData, null, 2)}</pre>\n    </ParallaxScrollView>\n  );\n}\n\nconst styles = StyleSheet.create({\n  titleContainer: {\n    flexDirection: "row",\n    alignItems: "center",\n    gap: 8,\n  },\n  stepContainer: {\n    gap: 8,\n    marginBottom: 8,\n  },\n  reactLogo: {\n    height: 178,\n    width: 290,\n    bottom: 0,\n    left: 0,\n    position: "absolute",\n  },\n});\n',
+  "ButtonComponent": `
+import React from "react";
+import { View, Text } from "react-native";
+import { LinearGradient } from 'expo-linear-gradient';
+
+const ButtonComponent = () => {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Button</Text>
+      <LinearGradient
+        style={{ width: 200, height: 100, borderRadius: 10 }}
+        colors={['red', 'white', 'blue']}
+      />
+    </View>
+  );
 };
+
+export default ButtonComponent;
+`,
+  "CardComponent": `
+import React from "react";
+import ButtonComponent from "./ButtonComponent";
+import { View, Text } from "react-native";
+
+const CardComponent = () => {
+  return (
+    <View>
+      <Text>Card</Text>
+      <ButtonComponent />
+    </View>
+  );
+};
+
+export default CardComponent;
+`,
+  "HeaderComponent": `
+import React from "react";
+import { StyleSheet } from "react-native";
+const HeaderComponent = () => {
+  return <div style={styles.wrap}>HeaderComponent</div>;
+};
+
+const styles = StyleSheet.create({
+  wrap: {
+    backgroundColor: "yellow",
+  },
+});
+
+export default HeaderComponent;
+`,
+  };
