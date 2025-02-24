@@ -1,5 +1,5 @@
 import React from "react";
-import ButtonComponent from "./ButtonComponent";
+import ButtonComponent from "@/app/widgets/ButtonComponent";
 import { View, Text } from "react-native";
 
 const CardComponent = () => {
