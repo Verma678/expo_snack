@@ -1,7 +1,13 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
+import Test from "@/app/(tabs)/Test";
 const HeaderComponent = () => {
-  return <div style={styles.wrap}>HeaderComponent</div>;
+  return (
+    <View style={styles.wrap}>
+      <Text>Header</Text>
+      <Test/>
+    </View>
+  )
 };
 
 const styles = StyleSheet.create({

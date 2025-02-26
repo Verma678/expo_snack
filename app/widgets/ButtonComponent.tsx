@@ -1,9 +1,10 @@
-// import React from "react";
-// import { View, Text } from "react-native";
-// import { LinearGradient } from "expo-linear-gradient";
-// import { Image } from "react-native";
 
-// const ButtonComponent = ({text}) => {
+
+// import React from "react";
+// import { View, Text, Image } from "react-native";
+// import { LinearGradient } from "expo-linear-gradient"; 
+
+// const ButtonComponent = () => {
 //   return (
 //     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
 //       <Text>Button</Text>
@@ -11,13 +12,6 @@
 //         style={{ width: 200, height: 100, borderRadius: 10 }}
 //         colors={["red", "white", "blue"]}
 //       />
-//       <Text>{text}</Text>
-//       {/* <Image
-//         source={{
-//           uri: componentData["favicon.png"],
-//         }}
-//         style={{ width: 200, height: 200, borderWidth: 3 }}
-//       /> */}
 //     </View>
 //   );
 // };
@@ -26,23 +20,32 @@
 
 
 import React from "react";
-import { View, Text, Image } from "react-native";
-import { LinearGradient } from "expo-linear-gradient"; 
+import { View, Text, TouchableOpacity, Image } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
-const ButtonComponent = () => {
+const ButtonComponent = ({ title, colors = ["#ff7e5f", "#feb47b"], imageUrl, onPress }) => {
+  console.log(imageUrl)
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Button</Text>
-      <LinearGradient
-        style={{ width: 200, height: 100, borderRadius: 10 }}
-        colors={["red", "white", "blue"]}
-      />
-      <Image
-        source={{uri: require("@/assets/images/adaptive_icon.png")}} 
-        style={{ width: 200, height: 200, borderWidth: 3 }}
-      />
-    </View>
+    <TouchableOpacity onPress={onPress} style={{ marginBottom: 10 }}>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <LinearGradient
+          style={{
+            width: 200,
+            height: 50,
+            borderRadius: 10,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          colors={colors}
+        >
+          <Text style={{ color: "white", fontWeight: "bold" }}>{title}</Text>
+        </LinearGradient>
+        <Image source={{  uri: imageUrl[0]}} style={{ width: 50, height: 50, marginTop: 5 }}></Image>
+      </View>
+      
+    </TouchableOpacity>
   );
 };
 
 export default ButtonComponent;
+

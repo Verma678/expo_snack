@@ -6,7 +6,7 @@ import {
   FlatList,
   StyleSheet,
 } from "react-native";
-import { componentData } from "../componentData";
+import { componentData } from "@/app/componentData";
 
 const componentArray = Object.entries(componentData).map(([name, code]) => ({
   name,

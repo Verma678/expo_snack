@@ -6,7 +6,6 @@ function Test() {
   return (
     <View>
         <Text>Test</Text>
-        <ButtonComponent/>
     </View>
   )
 }

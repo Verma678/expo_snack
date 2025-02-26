@@ -7,10 +7,11 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
-import useSnack from "./useSnack";
+import useSnack from "@/app/(tabs)/useSnack";
 import QRCode from "react-native-qrcode-svg";
-import { componentData } from "../componentData";
-import Component from "./Component";
+import { componentData } from "@/app/componentData";
+import Component from "@/app/(tabs)/Component";
+import Editor from '@monaco-editor/react';
 
 const data = Object.entries(componentData).map(([name, code]) => ({
   name,
@@ -40,19 +41,43 @@ export default function SnackPlayer() {
 
         <View style={styles.editorContainer}>
           <Text style={styles.title}>Editing: {currentComponent.name}</Text>
-          <TextInput
-            style={styles.codeContainer}
-            multiline
+          <Editor
+            height="100%"
+            language="javascript"
+            theme="vs-dark"
             value={currentComponent.code}
-            onChangeText={(newCode) =>
+            onChange={(newCode) =>
               setCurrentComponent((prev) => ({ ...prev, code: newCode }))
             }
+            options={{
+              automaticLayout: true,
+              minimap: { enabled: true, scale: 1.2, showSlider: "always" },
+              scrollBeyondLastLine: false,
+              wordWrap: "on",
+              fontSize: 14,
+              fontFamily: "Fira Code, Menlo, Monaco, 'Courier New', monospace",
+              cursorBlinking: "smooth",
+              lineNumbers: "on",
+              renderIndentGuides: true,
+              overviewRulerBorder: false,
+              folding: true,
+              showFoldingControls: "always",
+              quickSuggestions: true,
+              suggestOnTriggerCharacters: true,
+              matchBrackets: "always",
+              bracketPairColorization: { enabled: true },
+              autoClosingBrackets: "always",
+              autoClosingQuotes: "always",
+              renderLineHighlight: "all",
+              selectionHighlight: true,
+              occurrencesHighlight: true,
+            }}
           />
         </View>
 
-        <View style={styles.rightContainer}>
-          <View style={styles.previewWrapper}>
-            {showQR ? (
+//         <View style={styles.rightContainer}>
+//           <View style={styles.previewWrapper}>
+//             {showQR ? (
               <View style={styles.qrWrapper}>
                 {url ? (
                   <QRCode value={url} size={180} />
@@ -115,7 +140,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#222",
     minHeight: 300,
-    height: 600,
+    height: 900,
     borderRadius:10,
   },
   title: {
@@ -131,8 +156,7 @@ const styles = StyleSheet.create({
     fontFamily: "monospace",
     fontSize: 14,
     color: "#EEE",
-    minHeight: 300,
-    height: 600,
+    minHeight: 900,
     backgroundColor: "#222",
   },
   rightContainer: {
@@ -192,5 +216,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-
 
